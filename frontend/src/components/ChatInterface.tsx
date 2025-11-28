@@ -99,14 +99,20 @@ const ChatInterface: React.FC = () => {
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeKatex]}
         components={{
-          code({ node, inline, className, children, ...props }) {
+          code({ node = {}, inline = false, className, children = '', ...props }: {
+            node?: any;
+            inline?: boolean;
+            className?: string;
+            children?: React.ReactNode;
+            [key: string]: any;
+          }) {
             const match = /language-(\w+)/.exec(className || '');
             const language = match ? match[1] : '';
 
             if (!inline && language) {
               return (
                 <SyntaxHighlighter
-                  style={isDarkMode ? vscDarkPlus : vs}
+                  style={(isDarkMode ? vscDarkPlus : vs) as any}
                   language={language}
                   PreTag="div"
                   className="rounded-md my-2 text-sm"

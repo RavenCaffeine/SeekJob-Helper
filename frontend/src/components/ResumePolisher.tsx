@@ -6,10 +6,6 @@
 import React, { useState } from 'react';
 import { resumeApi } from '../api';
 import { ResumeOptimizeResponse } from '../types';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeKatex from 'rehype-katex';
-import 'katex/dist/katex.min.css';
 
 const ResumePolisher: React.FC = () => {
   const [resumeText, setResumeText] = useState('');
